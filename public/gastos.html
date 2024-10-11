@@ -1,0 +1,32 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Gastos e Entradas</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script type="module" src="assets/js/firebase-config.js" defer></script>
+  <script type="module" src="assets/js/gastos.js" defer></script>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div class="container">
+    <h2>Cadastro de Gastos e Entradas</h2>
+    <form id="expenseForm">
+      <label for="descricao">Descrição:</label>
+      <input type="text" id="descricao" required>
+      <label for="valor">Valor:</label>
+      <input type="number" id="valor" required>
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" required>
+        <option value="entrada">Entrada</option>
+        <option value="gasto">Gasto</option>
+      </select>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <h2>Lista de Gastos e Entradas</h2>
+    <ul id="expenseList"></ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script type="module" src="assets/js/firebase-config.js" defer></script>
+  <script type="module" src="assets/js/relatorios.js" defer></script>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div class="container">
+    <h2>Resumo Financeiro do Mês Atual</h2>
+    <div class="resumo-financeiro">
+      <h3>Total de Recebimentos do Mês: <span id="totalRecebimentosMes">R$ 0,00</span></h3>
+      <h3>Total de Gastos do Mês: <span id="totalGastosMes">R$ 0,00</span></h3>
+      <h3>Total de Entradas do Mês: <span id="totalEntradasMes">R$ 0,00</span></h3>
+      <h3>Saldo Atual em Caixa: <span id="saldoAtual">R$ 0,00</span></h3>
+    </div>
+    <h2>Selecione o Período para Visualizar Relatórios</h2>
+    <form id="periodoForm">
+      <label for="dataInicio">Data de Início:</label>
+      <input type="date" id="dataInicio" required>
+      <label for="dataFim">Data de Fim:</label>
+      <input type="date" id="dataFim" required>
+      <button type="submit">Carregar Relatório</button>
+    </form>
+    <div id="resultadoPeriodo">
+      <h3>Resumo de Pessoas Cadastradas</h3>
+      <div class="resumo-pessoas">
+        <p>Total de Mensalistas: <span id="totalMensalistas">0</span></p>
+        <p>Total de Diaristas: <span id="totalDiaristas">0</span></p>
+      </div>
+      <h3>Relatório de Mensalistas</h3>
+      <ul id="mensalistaList"></ul>
+      <h3>Relatório de Diaristas</h3>
+      <ul id="diaristaList"></ul>
+    </div>
+  </div>
+</body>
+</html>

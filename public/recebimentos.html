@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Recebimentos</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script type="module" src="assets/js/firebase-config.js" defer></script>
+  <script type="module" src="assets/js/recebimentos.js" defer></script>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div class="container">
+    <h2>Cadastro de Recebimentos</h2>
+    <form id="recebimentoForm">
+      <label for="pessoa">Selecione a Pessoa:</label>
+      <select id="pessoa" required></select>
+      <label for="valor">Valor do Recebimento:</label>
+      <input type="number" id="valor" required>
+      <label for="dataPagamento">Data do Pagamento:</label>
+      <input type="date" id="dataPagamento" required>
+      <label for="diaJogo">Dia do Jogo de Referência:</label>
+      <input type="date" id="diaJogo" required>
+      <button type="submit">Cadastrar Recebimento</button>
+    </form>
+    <h2>Recebimentos Cadastrados</h2>
+    <ul id="recebimentoList"></ul>
+  </div>
+</body>
+</html>
