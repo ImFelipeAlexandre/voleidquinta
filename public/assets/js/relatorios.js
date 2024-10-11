@@ -29,41 +29,67 @@ function carregarGastosERecebimentosPeriodo(dataInicio, dataFim) {
 
   // recebimentos
   db.collection('recebimentos').where("diaJogo", ">=", dataInicio).where("diaJogo", "<=", dataFim)
-    .get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        const recebimento = doc.data();
-        if (recebimento.pessoaNome && recebimento.tipo === 'diarista') {  // Verifica se a pessoa é diarista
-          const listItemDiarista = document.createElement('li');
-          listItemDiarista.textContent = `${recebimento.pessoaNome} - Valor: R$ ${parseFloat(recebimento.valor).toFixed(2)} - Data do Jogo: ${recebimento.diaJogo}`;
-          diaristaList.appendChild(listItemDiarista);
-          totalDiaristas++;
-          totalRecebimentosMes += parseFloat(recebimento.valor);
-          saldoAtual += parseFloat(recebimento.valor);
-        }
-      });
+  .get().then(querySnapshot => {
+    querySnapshot.forEach(doc => {
+      const recebimento = doc.data();
+      
+      console.log('Recebimento encontrado:', recebimento);
 
-      totalDiaristasEl.textContent = totalDiaristas;
-      document.getElementById('totalRecebimentosMes').textContent = `R$ ${totalRecebimentosMes.toFixed(2)}`;
-      document.getElementById('saldoAtual').textContent = `R$ ${saldoAtual.toFixed(2)}`;
+      if (recebimento.pessoaNome && recebimento.tipo === 'diarista') {  // diarista?
+        console.log('Diarista encontrado:', recebimento.pessoaNome);
+
+        const listItemDiarista = document.createElement('li');
+        listItemDiarista.textContent = `${recebimento.pessoaNome} - Valor: R$ ${parseFloat(recebimento.valor).toFixed(2)} - Data do Jogo: ${recebimento.diaJogo}`;
+        diaristaList.appendChild(listItemDiarista);
+        totalDiaristas++;
+        totalRecebimentosMes += parseFloat(recebimento.valor);
+        saldoAtual += parseFloat(recebimento.valor);
+      } else {
+        console.log('Este não é um diarista:', recebimento.pessoaNome, recebimento.tipo);
+      }
     });
+
+    totalDiaristasEl.textContent = totalDiaristas;
+    document.getElementById('totalRecebimentosMes').textContent = `R$ ${totalRecebimentosMes.toFixed(2)}`;
+    document.getElementById('saldoAtual').textContent = `R$ ${saldoAtual.toFixed(2)}`;
+
+    console.log(`Total de Diaristas: ${totalDiaristas}`);
+  });
+
 
   // mensalistas
   db.collection('pessoas').get().then(querySnapshot => {
     querySnapshot.forEach(doc => {
       const pessoa = doc.data();
-      const listItem = document.createElement('li');
+      const listItemMensalista = document.createElement('li');
+      const listItemDiarista = document.createElement('li');
+  
       if (pessoa.tipo === 'mensalista') {
-        listItem.textContent = `${pessoa.nome} - ${pessoa.telefone}`;
-        mensalistaList.appendChild(listItem);
+        listItemMensalista.textContent = `${pessoa.nome} - ${pessoa.telefone}`;
+        mensalistaList.appendChild(listItemMensalista);
         totalMensalistas++;
         totalRecebimentosMes += pessoa.valor || 0;
         saldoAtual += pessoa.valor || 0;
       }
+  
+      if (pessoa.tipo === 'diarista') {
+        listItemDiarista.textContent = `${pessoa.nome} - ${pessoa.telefone}`;
+        diaristaList.appendChild(listItemDiarista);
+        totalDiaristas++;
+      }
     });
-
+  
     totalMensalistasEl.textContent = totalMensalistas;
+    totalDiaristasEl.textContent = totalDiaristas;
     document.getElementById('totalRecebimentosMes').textContent = `R$ ${totalRecebimentosMes.toFixed(2)}`;
     document.getElementById('saldoAtual').textContent = `R$ ${saldoAtual.toFixed(2)}`;
+  
+    console.log(`Total de Mensalistas: ${totalMensalistas}`);
+    console.log(`Total de Diaristas: ${totalDiaristas}`);
+    console.log(`Total Recebimentos Mes: R$ ${totalRecebimentosMes.toFixed(2)}`);
+    console.log(`Saldo Atual: R$ ${saldoAtual.toFixed(2)}`);
+  }).catch(error => {
+    console.error("Erro ao carregar pessoas: ", error);
   });
 
   // load gastos
@@ -71,13 +97,11 @@ function carregarGastosERecebimentosPeriodo(dataInicio, dataFim) {
     .get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const registro = doc.data();
-        const valor = parseFloat(registro.valor) || 0;  // Converter valor para número
+        const valor = parseFloat(registro.valor) || 0; 
 
-        // Adicionar log para verificar o registro
         console.log('Registro:', registro);
 
-        // Verificar se o campo 'data' está sendo corretamente tratado como timestamp
-        const dataRegistro = registro.data.toDate(); // Converter o timestamp para data
+        const dataRegistro = registro.data.toDate();
 
         console.log(`Data Registro: ${dataRegistro}, Valor: ${valor}, Tipo: ${registro.tipo}`);
 
@@ -90,12 +114,10 @@ function carregarGastosERecebimentosPeriodo(dataInicio, dataFim) {
         }
       });
 
-      // Atualizar o HTML com os resultados
       document.getElementById('totalGastosMes').textContent = `R$ ${totalGastosMes.toFixed(2)}`;
       document.getElementById('totalEntradasMes').textContent = `R$ ${totalEntradasMes.toFixed(2)}`;
       document.getElementById('saldoAtual').textContent = `R$ ${saldoAtual.toFixed(2)}`;
 
-      // Logs para depuração
       console.log(`Total Gastos: ${totalGastosMes}, Total Entradas: ${totalEntradasMes}, Saldo Atual: ${saldoAtual}`);
     });
   }
