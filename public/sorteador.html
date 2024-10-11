@@ -1,0 +1,37 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Times de Vôlei</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script type="module" src="assets/js/firebase-config.js" defer></script>
+    <script type="module" src="assets/js/sorteador.js" defer></script>
+</head>
+<body>
+    <h2>Sorteio de Times de Vôlei</h2>
+
+    <ul id="playerList"></ul>
+
+    <input type="text" id="newPlayerName" placeholder="Adicionar novo jogador">
+    <button id="addPlayerBtn">Adicionar Jogador</button>
+
+    <label for="teamSize">Escolha o número de jogadores por time:</label>
+    <select id="teamSize">
+        <option value="2">2 Jogadores</option>
+        <option value="3">3 Jogadores</option>
+        <option value="4">4 Jogadores</option>
+        <option value="5">5 Jogadores</option>
+    </select>
+
+    <button id="drawTeamsBtn">Sortear Times</button>
+
+    <h3>Time 1</h3>
+    <ul id="team1List"></ul>
+
+    <h3>Time 2</h3>
+    <ul id="team2List"></ul>
+
+</body>
+</html>

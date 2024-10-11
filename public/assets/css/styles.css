@@ -1,209 +1,304 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-  }
-  
-  header {
-    background-color: #000000;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .logo {
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #4CAF50;
+  padding: 15px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input, select, button {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+ul li:hover {
+  background-color: #f1f1f1;
+}
+
+ul li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+ul li button:hover {
+  background-color: #c82333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#calendar {
+  margin-top: 20px;
+  margin-bottom: 5%;
+}
+
+@media (max-width: 768px) {
   .navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .navbar ul li {
-    margin-left: 20px;
-  }
-  
-  .navbar ul li a {
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .navbar ul li a:hover {
-    color: #000000;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 120px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  input, select, button {
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #000000;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  ul li {
-    background-color: #f1f1f1;
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  ul li button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-  }
-  
-  ul li button:hover {
-    background-color: #c82333;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 12px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #000000;
-    color: white;
-  }
-  
-  #calendar {
-    margin-top: 20px;
-    margin-bottom: 5%;
-  }
-  
-  @media (max-width: 768px) {
-    .navbar ul {
       flex-direction: column;
-    }
-  
-    .container {
-      margin-top: 150px;
-    }
+      background-color: #4CAF50;
+      padding: 20px;
+      border-radius: 6px;
   }
 
+  .container {
+      margin-top: 150px;
+      padding: 10px;
+  }
+
+  ul li {
+      font-size: 14px;
+  }
+}
+
 ul#peopleList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul#peopleList li {
+  background-color: #f5f5f5;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+ul#peopleList div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+ul#peopleList select {
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+ul#peopleList button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+ul#peopleList button:hover {
+  background-color: #c9302c;
+}
+
+ul#peopleList .pessoa-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.teams-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.teams-table th, .teams-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.teams-table th {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.teams-table td {
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 14px;
+}
+
+.teams-table tr:hover td {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .teams-table th, .teams-table td {
+    font-size: 12px;
+    padding: 8px;
   }
-  
-  ul#peopleList li {
-    background-color: #f5f5f5;
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
+}
+
+.name-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.name-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.name-table tr:nth-child(even) td {
+  background-color: #f1f1f1;
+}
+
+.name-table td:hover {
+  background-color: #e9e9e9;
+}
+
+@media (max-width: 768px) {
+  .name-table td {
+      font-size: 12px;
+      padding: 8px;
   }
-  
-  ul#peopleList li div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  ul#peopleList select {
-    padding: 4px 8px;
-    font-size: 14px;
-    margin-right: 10px;
-  }
-  
-  ul#peopleList button {
-    padding: 4px 8px;
-    font-size: 14px;
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  ul#peopleList button:hover {
-    background-color: #c9302c;
-  }
-  
-  ul#peopleList .pessoa-info {
-    flex-grow: 1;
-    text-align: left;
-  }
-  
+}
