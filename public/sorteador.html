@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorteio de Times de Vôlei</title>
+    <title>Sorteio de Times</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
@@ -10,9 +10,24 @@
     <script type="module" src="assets/js/sorteador.js" defer></script>
 </head>
 <body>
-    <h2>Sorteio de Times de Vôlei</h2>
+    <h2>Sorteio de Times</h2>
 
-    <ul id="playerList"></ul>
+    <div class="name-list-container">
+        <table id="playerList" class="player-list-table">
+            <tbody id="playerTableBody"></tbody>
+        </table>
+    
+        <div id="teamsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>Times Sorteados</h3>
+                <table id="teamsTable" class="teams-table">
+                    <tbody id="teamsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+       
 
     <input type="text" id="newPlayerName" placeholder="Adicionar novo jogador">
     <button id="addPlayerBtn">Adicionar Jogador</button>
@@ -26,12 +41,6 @@
     </select>
 
     <button id="drawTeamsBtn">Sortear Times</button>
-
-    <h3>Time 1</h3>
-    <ul id="team1List"></ul>
-
-    <h3>Time 2</h3>
-    <ul id="team2List"></ul>
 
 </body>
 </html>
