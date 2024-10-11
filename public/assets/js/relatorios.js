@@ -32,13 +32,13 @@ function carregarGastosERecebimentosPeriodo(dataInicio, dataFim) {
     .get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const recebimento = doc.data();
-        if (recebimento.pessoaNome) {
+        if (recebimento.pessoaNome && recebimento.tipo === 'diarista') {  // Verifica se a pessoa é diarista
           const listItemDiarista = document.createElement('li');
-          listItemDiarista.textContent = `${recebimento.pessoaNome} - Valor: R$ ${recebimento.valor} - Data do Jogo: ${recebimento.diaJogo}`;
+          listItemDiarista.textContent = `${recebimento.pessoaNome} - Valor: R$ ${parseFloat(recebimento.valor).toFixed(2)} - Data do Jogo: ${recebimento.diaJogo}`;
           diaristaList.appendChild(listItemDiarista);
           totalDiaristas++;
-          totalRecebimentosMes += recebimento.valor;
-          saldoAtual += recebimento.valor;
+          totalRecebimentosMes += parseFloat(recebimento.valor);
+          saldoAtual += parseFloat(recebimento.valor);
         }
       });
 
@@ -67,24 +67,38 @@ function carregarGastosERecebimentosPeriodo(dataInicio, dataFim) {
   });
 
   // load gastos
-  db.collection('gastos_entradas').where("data", ">=", dataInicio).where("data", "<=", dataFim)
+  db.collection('gastos_entradas').where("data", ">=", new Date(dataInicio)).where("data", "<=", new Date(dataFim))
     .get().then(querySnapshot => {
       querySnapshot.forEach(doc => {
         const registro = doc.data();
+        const valor = parseFloat(registro.valor) || 0;  // Converter valor para número
+
+        // Adicionar log para verificar o registro
+        console.log('Registro:', registro);
+
+        // Verificar se o campo 'data' está sendo corretamente tratado como timestamp
+        const dataRegistro = registro.data.toDate(); // Converter o timestamp para data
+
+        console.log(`Data Registro: ${dataRegistro}, Valor: ${valor}, Tipo: ${registro.tipo}`);
+
         if (registro.tipo === 'gasto') {
-          totalGastosMes += registro.valor;
-          saldoAtual -= registro.valor;
+          totalGastosMes += valor;
+          saldoAtual -= valor;
         } else if (registro.tipo === 'entrada') {
-          totalEntradasMes += registro.valor;
-          saldoAtual += registro.valor;
+          totalEntradasMes += valor;
+          saldoAtual += valor;
         }
       });
 
+      // Atualizar o HTML com os resultados
       document.getElementById('totalGastosMes').textContent = `R$ ${totalGastosMes.toFixed(2)}`;
       document.getElementById('totalEntradasMes').textContent = `R$ ${totalEntradasMes.toFixed(2)}`;
       document.getElementById('saldoAtual').textContent = `R$ ${saldoAtual.toFixed(2)}`;
+
+      // Logs para depuração
+      console.log(`Total Gastos: ${totalGastosMes}, Total Entradas: ${totalEntradasMes}, Saldo Atual: ${saldoAtual}`);
     });
-}
+  }
 
 // resumo do mes atual
 function carregarResumoFinanceiroDoMesAtual() {
